@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from Possion import Possion3
+from Binomial import Binomial
 
 """
 有关参数的思考：
@@ -20,7 +21,6 @@ nchip = 2
 nchannel =2
 PE = [1000, 5000, 7000, 10000]
 page_error_rate = [0.0001, 0.00015, 0.0003, 0.0006]
-
 
 def pro1():
 	lbd = page_error_rate[0] * npage / PE[0]
@@ -99,5 +99,6 @@ def block2plane(show = True):
 	ax1.set_zlabel('plane error rate')
 	plt.show()
 
+# block2plane()
 
-block2plane()
+page2block()
