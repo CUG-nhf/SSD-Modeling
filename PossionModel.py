@@ -2,7 +2,7 @@
 # 复现 https://blog.51cto.com/luoqingchao/6140701 中的 柏松模型
 
 import time
-import Possion
+import Math
 
 
 def Year2hour(year:int):
@@ -23,7 +23,7 @@ def PossionModel(N, n, t, AFR):
     lbda = AFR / (24 * 365) * N
 
     # 计算 P(N(t) = n)
-    P = Possion(lbda, n, t)
+    P = Math(lbda, n, t)
 
     return P
 
