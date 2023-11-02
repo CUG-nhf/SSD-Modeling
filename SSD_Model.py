@@ -3,24 +3,14 @@ from Math import Possion
 
 
 class ssdModel:
-
-	block_error_rate = []
-	plane_error_rate = []
-	die_error_rate = []
-	chip_error_rate = []
-	channel_error_rate = []
-	ssd_error_rate = []
-
-	nblock = 0
-	nplane = 0
-	ndie = 0
-	nchip = 0
-	nchannel = 0
-
-	PE = []
-
 	def __init__(self, BER, cnt, pe) -> None:
+		
 		self.block_error_rate = BER
+		self.plane_error_rate = []
+		self.die_error_rate = []
+		self.chip_error_rate = []
+		self.channel_error_rate = []
+		self.ssd_error_rate = []
 		
 		if len(cnt) < 5:
 			print("count error")
