@@ -18,7 +18,7 @@ def Binomial(N, E, R):
 
 
 if __name__ == '__main__':
-	"""
+	
 	page_size = 4 * 1024 * 8
 	page_error_rate = 0.0001
 	page_error_bit = int(page_size * page_error_rate)
@@ -29,22 +29,6 @@ if __name__ == '__main__':
 	R = 1E-4
 
 	print(Binomial(N, E, R))
-	"""
-	# print(4*1024*8)
-	sites = [0, 1, 2, 3, 4, 12, 20]
-	t, r = 2e9, []
-
-	for j in range(0, 21):
-		for i in range(j + 1, 21):
-			dis  = 0
-			for x in sites:
-				dis += max((x - i)*(x - i), (x - j)*(x - j))
-			if dis < t:
-				t,r = dis, [(i, j)]
-			elif dis == t:
-				r.append((i, j))
-	print(t)
-	print(r)
 
 """
 把 ECC 加入到 page2block 的柏松模型的难度：
@@ -52,7 +36,3 @@ if __name__ == '__main__':
 	难点2：如果把对page的读取分为多个小读取，每个都用ECC，那么我需要知道读取长度、ECC纠错长度、RBER
 		  才能去算UBER，但是Uncorrectable Error可以直接从SMART中读到，不需要计算啊
 """
-
-# (16, 6)
-# (16, 2)
-# (12, 2), (13, 2), (14, 2), (15, 2), (16, 2), (17, 2), (18, 2), (19, 2), (20, 2)
