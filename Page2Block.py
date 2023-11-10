@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from Math import Possion
-from Binomial import Binomial
 
 """
 有关参数的思考：
@@ -14,6 +13,7 @@ from Binomial import Binomial
 """
 
 npage = 1152
+npage = 128
 nblock = 990
 nplane = 2
 ndie = 2
@@ -77,4 +77,11 @@ def page2block(show = True):
 	故本函数得到的 block error rate 可能是正确的
 	"""
 
-page2block()  
+blockerrorrate = page2block(False)  
+
+Lambda = np.array(page_error_rate) * nblock / np.array(PE)
+p1_any = [1 - Possion(Lambda[i], 0, PE[i]) for i in range(len(PE))]
+
+print(page_error_rate)
+print(blockerrorrate)
+print(p1_any)
