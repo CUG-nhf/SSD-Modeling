@@ -5,13 +5,17 @@ import decimal
 from decimal import Decimal
 import numpy as np
 from tqdm import tqdm
+from datetime import datetime
+
+current_datetime = datetime.now()
+formatted_datetime = current_datetime.strftime("%Y-%m-%d-%H:%M:%S")
 
 decimal.getcontext().prec = 2000
 
 def fun1():
-	N = 256
-	rber = np.logspace(-7, -2, 51, 10) 
-	num_E = [1, 2, 3] 	# Number of correctable bits
+	N = 2 * 1024 * 8
+	rber = np.logspace(-3, -2, 11, 10) 
+	num_E = [820] 	# Number of correctable bits
 
 	for E in num_E:
 		uber = np.float64([1 - binom.cdf(E, N, r) for r in rber]) / np.float64(N)
@@ -21,7 +25,7 @@ def fun1():
 	plt.xlabel("RBER")
 	plt.ylabel("UBER")
 	plt.legend(loc ='best')
-	plt.savefig('uber-rber')
+	plt.savefig('picture/uber-rber-' + str(formatted_datetime))
 	# plt.show()
 
 
@@ -63,7 +67,7 @@ def fun2():
 	plt.xlabel("RBER")
 	plt.ylabel("UBER")
 	plt.legend(loc ='best')
-	plt.savefig('uber-rber')
+	plt.savefig('picture/uber-rber-' + formatted_datetime)
 	# plt.show()
 
-fun2()
+fun1()
