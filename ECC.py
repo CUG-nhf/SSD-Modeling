@@ -13,28 +13,29 @@ formatted_datetime = current_datetime.strftime("%Y-%m-%d-%H:%M:%S")
 decimal.getcontext().prec = 2000
 
 N = 2 * 1024 * 8
-code_rate = 0.9
-rber = np.logspace(-2, -1, 31, 10)
+code_rate = 0.1
+# rber = np.logspace(-2, -1, 31, 10)
+rber = np.linspace(0.01, 0.02, 6)
 number_E = [int(N * code_rate)]
 
 def fun1():
 	for E in number_E:
-		uber = np.float128([1 - binom.cdf(E, N, r) for r in rber]) / np.float128(N)
+		uber = np.float64([1 - binom.cdf(E, N, r) for r in rber]) / np.float64(N)
 		
 		plt.loglog(rber, uber, '-o', label='{}b/{}b'.format(E, N))
 
 	plt.xlabel("RBER")
 	plt.ylabel("UBER")
 	plt.legend(loc ='best')
-	plt.savefig('picture/uber-rber-' + str(formatted_datetime))
-	# plt.show()
+	# plt.savefig('picture/n1')
+	plt.show()
 
 
 def fun2():
 	Com = {}
 	for E in number_E:
 		uber = []
-		for r in rber:
+		for r in tqdm(rber):
 			p, R = Decimal(0), Decimal(r)
 			for n in range(0, E + 1):
 				# 计算组合数
@@ -61,7 +62,7 @@ def fun2():
 	plt.xlabel("RBER")
 	plt.ylabel("UBER")
 	plt.legend(loc ='best')
-	plt.savefig('picture/uber-rber-' + formatted_datetime)
-	# plt.show()
+	#plt.savefig('picture/uber-rber-' + formatted_datetime)
+	plt.show()
 
-fun1()
+fun2()
