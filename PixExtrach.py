@@ -1,38 +1,43 @@
-from PIL import Image, ImageTk
-import tkinter as tk
+import pygame
+import sys
 
-class ImageWithCoordinates:
-    def __init__(self, image_path):
-        self.image = Image.open(image_path)
-        self.width, self.height = self.image.size
+# 初始化pygame
+pygame.init()
 
-        self.root = tk.Tk()
-        self.root.title("Image with Coordinates")
+# 设置窗口大小
+width, height = 800, 600
+screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption("坐标系示例")
 
-        self.canvas = tk.Canvas(self.root, width=self.width, height=self.height)
-        self.canvas.pack()
+# 定义颜色
+white = (255, 255, 255)
 
-        # 将图像转换为ImageTk.PhotoImage对象
-        self.photo = ImageTk.PhotoImage(self.image)
-        # 在画布上显示图像
-        self.canvas.create_image(0, self.height, anchor=tk.SW, image=self.photo)  # 左下角为原点
+# 加载图片
+image_path = "picture/pic2.png"  # 将路径替换为你的图片路径
+image = pygame.image.load(image_path)
+image = pygame.transform.scale(image, (width, height))
 
-        # 创建坐标系
-        self.canvas.create_line(0, 0, self.width, 0, fill="red", width=2)  # x轴
-        self.canvas.create_line(0, 0, 0, self.height, fill="blue", width=2)  # y轴
+# 渲染图片到窗口
+screen.blit(image, (0, 0))
 
-        # 设置鼠标点击事件
-        self.canvas.bind("<Button-1>", self.on_click)
+# 更新显示
+pygame.display.flip()
 
-    def on_click(self, event):
-        x, y = event.x, self.height - event.y  # 调整y坐标以匹配左下角为原点
-        # 输出点击点的坐标
-        print(f"点击坐标: x={x}, y={y}")
+def convert_coordinates(mouse_pos):
+    # 将鼠标点击的窗口坐标转换为直角坐标系中的坐标
+    x = mouse_pos[0]
+    y = height - mouse_pos[1]  # 将窗口坐标系转换为直角坐标系
+    return x, y
 
-    def run(self):
-        self.root.mainloop()
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1:  # 检测鼠标左键点击
+                mouse_position = pygame.mouse.get_pos()
+                coordinates = convert_coordinates(mouse_position)
+                print("鼠标点击坐标:", coordinates)
 
-if __name__ == "__main__":
-    image_path = "picture/pic1.png"  # 请替换为你的图片路径
-    app = ImageWithCoordinates(image_path)
-    app.run()
+    pygame.display.update()
