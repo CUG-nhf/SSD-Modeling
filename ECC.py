@@ -1,23 +1,15 @@
 from scipy.stats import binom
 import matplotlib.pyplot as plt
-from math import log10
 import decimal
 from decimal import Decimal
 import numpy as np
 from tqdm import tqdm
-from datetime import datetime
 
-current_datetime = datetime.now()
-formatted_datetime = current_datetime.strftime("%Y-%m-%d-%H:%M:%S")
-
-decimal.getcontext().prec = 2000
+decimal.getcontext().prec = 100
 
 N = 2 * 1024 * 8
 code_rate = 0.1  # 纠错码的比例
-rber = [0.005, 0.0075, 0.01, 0.0125, 0.015, 0.0175, 0.02]
-code_rate = 0.1
-# rber = np.logspace(-2, -1, 31, 10)
-rber = np.linspace(0.01, 0.02, 6)
+rber = np.logspace(-2, -1, 11, 10)
 number_E = [int(N * code_rate)]
 
 # N = 128
@@ -28,16 +20,13 @@ number_E = [int(N * code_rate)]
 def fun1():
 	for E in number_E:
 		uber = np.float64([1 - binom.cdf(E, N, r) for r in rber]) / np.float64(N)
-		uber = np.float64([1 - binom.cdf(E, N, r) for r in rber]) / np.float64(N)
 		
 		plt.loglog(rber, uber, '-', label='{}b/{}b'.format(E, N))
 
 	plt.xlabel("RBER")
 	plt.ylabel("UBER")
 	plt.legend(loc ='best')
-	plt.savefig('picture/{}b-{}b-binom-'.format(E, N) + formatted_datetime)
-	# plt.show()
-	# plt.savefig('picture/n1')
+	# plt.savefig('picture/pic1')
 	plt.show()
 
 
@@ -72,9 +61,7 @@ def fun2():
 	plt.xlabel("RBER")
 	plt.ylabel("UBER")
 	plt.legend(loc ='best')
-	plt.savefig('picture/{}b-{}b-decimal-'.format(E, N) + formatted_datetime)
-	# plt.show()
-	#plt.savefig('picture/uber-rber-' + formatted_datetime)
+	# plt.savefig('picture/pic2')
 	plt.show()
 
 
