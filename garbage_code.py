@@ -13,6 +13,7 @@ plt.yscale('log')
 plt.xscale('log')
 plt.show()
 
+
 def fit2():
 	# 定义幂函数
 	def power_law(x, a, b, c, d):
