@@ -19,7 +19,7 @@ def fig1():
 	plt.show()
 
 
-def fig2():
+def fig3():
 	#A 38.64-Gb/s Large-CPM 2-KB LDPC Decoder Implementation for nand Flash Memories
 	
 	rber = [1.26,1.34,1.39,1.44,1.51,1.61,1.72,1.82]
@@ -53,7 +53,7 @@ def fig2():
 	plt.show()
 
 
-def fig3():
+def fig2():
 	#https://www.flashmemorysummit.com/English/Collaterals/Proceedings/2013/20130814_E22_YangJ.pd
 	rber = [5e-3, 6e-3, 7e-3, 8e-3, 9e-3, 1e-2,1.2e-2,1.4e-2,1.6e-2,1.8e-2,2e-2]
 	uber = [9e-16, 1e-13, 6e-11, 8e-9,2e-7,5e-6,9e-5,1e-4,1e-4,1e-4,1e-4]
@@ -129,6 +129,6 @@ def fig4():
 	plt.title('SD ECCs')
 	plt.show()
 
-fig4()
+fig3()
 
 
