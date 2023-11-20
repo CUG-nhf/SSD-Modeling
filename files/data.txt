@@ -6,7 +6,7 @@
 
 # A 38.64-Gb/s Large-CPM 2-KB LDPC Decoder Implementation for nand Flash Memories
 # fig 2
-'-v', label='Proposed'
+# '-v', label='Proposed'
 	rber = [1.26e-2,1.34e-2,1.39e-2,1.44e-2,1.51e-2,1.61e-2,1.72e-2,1.82e-2]
 	uber = [3e-10,4e-8,5e-7,5e-6,6e-5,6e-4,3e-3,8e-3]
 
@@ -36,6 +36,6 @@
 	rber = [4.53e-3,5e-3,5.27e-3,5.52e-3]
 	uber = [7e-8,8e-6,1.7e-4,3e-3]
 
-'-<b', label='LDPC(4KB,0.90-rate)'
+# '-<b', label='LDPC(4KB,0.90-rate)'
 	rber = [17.3e-3,17.7e-3,18.1e-3,18.5e-3,18.9e-3,19.7e-3]
 	uber = [2.9e-11,1e-7,3e-6,6e-5,5.6e-4,6.7e-3]
