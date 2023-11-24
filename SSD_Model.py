@@ -1,4 +1,6 @@
 import numpy as np
+import pandas as pd
+import numpy as np
 from Math import Possion
 
 
@@ -64,5 +66,29 @@ class ssdModel:
 		
 		return self.ssd_error_rate
 		
-		
 
+if __name__ == '__main__':
+	PE = [1000, 5000, 7000, 10000]
+	ber = [0.0001, 0.00015, 0.0003, 0.0006]
+	N = [990, 2, 2, 2, 2]
+
+	ssd = ssdModel(ber, N, ber)
+	data = []
+	data.append([round(i, 5) for i in ssd.getBlockErrorRate()])
+	data.append([round(i, 5) for i in ssd.getPlaneErrorRate()])
+	data.append([round(i, 5) for i in ssd.getDieErrorRate()])
+	data.append([round(i, 5) for i in ssd.getChipErrorRate()])
+	data.append([round(i, 5) for i in ssd.getChannelErrorRate()])
+	data.append([round(i, 5) for i in ssd.get_SSD_error_rate()])
+
+	arr = np.array(data)
+	dataframe = pd.DataFrame(arr)
+	dataframe.to_excel('/Users/haifengni/Desktop/data.xlsx')
+	# print([round(i, 5) for i in ssd.get_SSD_error_rate()])
+	# print([round(i, 5) for i in ssd.getChannelErrorRate()])
+	# print([round(i, 5) for i in ssd.getChipErrorRate()])
+	# print([round(i, 5) for i in ssd.getDieErrorRate()])
+	# print([round(i, 5) for i in ssd.getPlaneErrorRate()])
+	# print([round(i, 5) for i in ssd.getBlockErrorRate()])
+	
+	
